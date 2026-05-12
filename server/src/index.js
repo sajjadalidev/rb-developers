@@ -20,8 +20,29 @@ const allowedOrigins = (process.env.CLIENT_ORIGIN || 'http://localhost:3000')
   .map((origin) => origin.trim())
   .filter(Boolean);
 
+function isAllowedOrigin(origin) {
+  if (!origin) return true;
+  if (allowedOrigins.includes(origin)) return true;
+  if (/^https:\/\/[a-z0-9-]+\.netlify\.app$/i.test(origin)) return true;
+  if (/^https:\/\/[a-z0-9-]+\.netlify\.live$/i.test(origin)) return true;
+  return /^http:\/\/localhost:\d+$/i.test(origin) || /^http:\/\/127\.0\.0\.1:\d+$/i.test(origin);
+}
+
+const corsOptions = {
+  origin(origin, callback) {
+    if (isAllowedOrigin(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error(`CORS blocked for origin: ${origin}`));
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
 app.use(helmet());
-app.use(cors({ origin: allowedOrigins, credentials: true }));
+app.use(cors(corsOptions));
 app.use(express.json({ limit: '2mb' }));
 app.use(morgan('dev'));
 
