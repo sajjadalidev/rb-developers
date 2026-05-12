@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: rb-real-estate-api
+    restart: unless-stopped
+    env_file:
+      - ./server/.env
+    ports:
+      - "5000:5000"
+
+  seed:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: rb-real-estate-seed
+    profiles:
+      - seed
+    env_file:
+      - ./server/.env
+    command: ["npm", "run", "seed"]
