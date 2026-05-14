@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
+    "build": "echo \"No build step defined for server\"",
     "start": "node src/index.js",
     "seed": "node src/seed.js",
     "seed:admin": "node src/seed-admin.js",
