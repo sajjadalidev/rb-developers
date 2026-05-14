@@ -1,4 +1,4 @@
-import { Nav } from './Nav';
+import { Nav } from "./Nav";
 
 export function PublicShell({ children }: { children: React.ReactNode }) {
   return (
@@ -8,8 +8,11 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
       <footer className="footer">
         <div className="container footer-grid">
           <div>
-            <strong>RB Developers</strong>
-            <p>Verified properties, projects, file rates, and investment guidance for Pakistan real estate.</p>
+            <strong>NIKZN Real Estate & Developers</strong>
+            <p>
+              Verified properties, projects, file rates, and investment guidance
+              for Pakistan real estate.
+            </p>
           </div>
           <div>
             <span>Lahore</span>
@@ -17,7 +20,14 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
             <span>Islamabad</span>
             <span>Murree</span>
           </div>
-          <a className="btn gold" href="https://wa.me/923045595455" target="_blank" rel="noreferrer">WhatsApp</a>
+          <a
+            className="btn gold"
+            href="https://wa.me/923045595455"
+            target="_blank"
+            rel="noreferrer"
+          >
+            WhatsApp
+          </a>
         </div>
       </footer>
     </>
